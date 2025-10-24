@@ -6,6 +6,7 @@ The **Azure Cloud Operations & Monitoring Hub** is a simulated enterprise-grade 
 Unlike the Cloud Resume Challenge, this project focuses on **managing a complete operational system** — not just deploying a website.  
 It represents the lifecycle of a real cloud environment: from secure infrastructure, automated deployments, monitoring, and self-healing, to cost governance and sustainability.
 
+
 ---
 
 ## 🎯 Objectives
