@@ -14,14 +14,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Step 2: Log in to Azure using service principal
+      # Step 2: Log in to Azure using service principal (single JSON secret)
       - name: Azure Login
         uses: azure/login@v1
         with:
-          client-id: ${{ secrets.AZURE_CLIENT_ID }}
-          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-          client-secret: ${{ secrets.AZURE_CLIENT_SECRET }}
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       # Step 3: Retrieve a secret from Key Vault
       - name: Get secret from Key Vault
@@ -36,5 +33,5 @@ jobs:
       - name: Deploy to Azure WebApp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: your-app-service-name
+          app-name: your-app-service-name   # replace with your actual App Service name (e.g., app-ops-web-prod)
           package: .
