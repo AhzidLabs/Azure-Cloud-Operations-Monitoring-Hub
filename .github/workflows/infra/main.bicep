@@ -31,3 +31,31 @@ resource stg 'Microsoft.Storage/storageAccounts@2022-09-01' = {
 }
 
 Phase 2 Task 1 – Added Resource Group context + Storage Account
+
+// --------------------------------
+// App Service Plan
+// --------------------------------
+resource plan 'Microsoft.Web/serverfarms@2022-09-01' = {
+  name: 'asp-ops-prod'
+  location: location
+  sku: {
+    name: 'B1'
+    tier: 'Basic'
+  }
+}
+
+// --------------------------------
+// App Service (Web App)
+// --------------------------------
+resource app 'Microsoft.Web/sites@2022-09-01' = {
+  name: 'app-ops-web-prod'
+  location: location
+  properties: {
+    serverFarmId: plan.id
+    httpsOnly: true
+  }
+  identity: {
+    type: 'SystemAssigned'
+  }
+}
+
