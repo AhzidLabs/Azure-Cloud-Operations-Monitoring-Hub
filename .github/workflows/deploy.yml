@@ -33,5 +33,5 @@ jobs:
       - name: Deploy to Azure WebApp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: your-app-service-name   # replace with your actual App Service name (e.g., app-ops-web-prod)
+          app-name: app-ops-web-prod   # replace with your actual App Service name (e.g., app-ops-web-prod)
           package: .
