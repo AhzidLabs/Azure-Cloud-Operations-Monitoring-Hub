@@ -35,3 +35,14 @@ jobs:
         with:
           app-name: app-ops-web-prod   # replace with your actual App Service name (e.g., app-ops-web-prod)
           package: .
+          
+            # Step 5: Purge Azure Front Door cache
+      - name: Purge Azure Front Door cache
+        if: success()    # runs only if deployment succeeds
+        uses: azure/CLI@v1
+        with:
+          inlineScript: |
+            az afd endpoint purge \
+              --ids $(az afd endpoint list --profile-name afd-ops-prod --resource-group rg-ops-hub-prod --query "[0].id" -o tsv) \
+              --content-paths "/*"
+
